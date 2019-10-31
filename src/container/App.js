@@ -4,7 +4,8 @@ import Company from '../components/Company';
 
 const mapStateToProps = state => {
 	return {
-		companies: state.companies,
+		companies: state.companies.companeis,
+		selected: state.companies.selected,
 	};
 };
 

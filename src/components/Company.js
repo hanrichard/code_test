@@ -50,7 +50,6 @@ class Company extends Component {
 
 	render() {
 		const { companies } = this.props;
-		console.log(companies);
 
 		const valuename = this.state.value;
 
@@ -59,8 +58,6 @@ class Company extends Component {
 			companies.employees.sort(function(a, b) {
 				return a[valuename] > b[valuename] ? 1 : b[valuename] > a[valuename] ? -1 : 0;
 			});
-
-		const regex = new RegExp(this.state.term, 'gi');
 
 		const sortOptions = [
 			{

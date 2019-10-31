@@ -1,1 +1,1 @@
-export { initCompanies } from './companies';
+export { initCompanies, setSelected } from './companies';

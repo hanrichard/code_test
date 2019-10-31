@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import Moment from 'react-moment';
 
 const CompanyItem = info => {
-	console.log(info.info);
 	const Wrapper = styled.div`
 		border-bottom: 1px solid rgba(0, 0, 0, 0.23);
 		padding: 30px 0;

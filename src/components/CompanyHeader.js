@@ -25,7 +25,7 @@ const CompanyItem = info => {
 
 	return (
 		<Wrapper className="Company__header">
-			<Container maxWidth="md" className="Company__header-container">
+			<Container maxWidth="lg" className="Company__header-container">
 				<Typography variant="h3" component="h1" gutterBottom>
 					{info.info.companyName}
 				</Typography>
@@ -33,7 +33,6 @@ const CompanyItem = info => {
 				<div className="Company__header-info">
 					<div>
 						<Typography component="p" gutterBottom>
-							{' '}
 							{info.info.companyMotto}{' '}
 						</Typography>
 					</div>

@@ -51,7 +51,18 @@ class Company extends Component {
 	render() {
 		const { companies } = this.props;
 		console.log(companies);
-		const currencies = [
+
+		const valuename = this.state.value;
+
+		let companiesEmployees =
+			companies.employees &&
+			companies.employees.sort(function(a, b) {
+				return a[valuename] > b[valuename] ? 1 : b[valuename] > a[valuename] ? -1 : 0;
+			});
+
+		const regex = new RegExp(this.state.term, 'gi');
+
+		const sortOptions = [
 			{
 				value: 'lastname',
 				label: 'Last Name',
@@ -89,7 +100,7 @@ class Company extends Component {
 					<Companyheader info={companies.companyInfo} />
 				</div>
 				<div className="Company__body">
-					<Container maxWidth="md">
+					<Container maxWidth="lg">
 						<div className="Company__bar">
 							<div className="Company__bar-heading">
 								<Typography variant="h4" component="h2" gutterBottom>
@@ -108,7 +119,7 @@ class Company extends Component {
 										margin="normal"
 										variant="outlined"
 									>
-										{currencies.map(option => (
+										{sortOptions.map(option => (
 											<MenuItem key={option.value} value={option.value}>
 												{option.label}
 											</MenuItem>
@@ -134,7 +145,7 @@ class Company extends Component {
 						</div>
 						<div>
 							<Grid container spacing={3}>
-								{companies.employees.map(company => {
+								{companiesEmployees.map(company => {
 									return <CompanyItem company={company} key={company.id} />;
 								})}
 							</Grid>
@@ -152,7 +163,7 @@ class Company extends Component {
 					open={this.state.open}
 					onClose={this.handleClose}
 				>
-					<Container maxWidth="md">
+					<Container maxWidth="lg">
 						<Paper>
 							<Paper p={3}>
 								<Card>

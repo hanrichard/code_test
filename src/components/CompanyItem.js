@@ -6,21 +6,25 @@ import Box from '@material-ui/core/Box';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 
-const CompanyItem = ({ lastName, firstName, avatar, bio }) => (
-	<Grid item xs={6} sm={4}>
-		<Paper p={3}>
-			<Card>
-				<CardContent>
-					<img src={avatar} alt={lastName} />
-				</CardContent>
+const CompanyItem = company => {
+	const { avatar, lastName, firstName, bio } = company.company;
 
-				<CardContent>
-					{lastName} {firstName} {bio}
-				</CardContent>
-			</Card>
-		</Paper>
-	</Grid>
-);
+	return (
+		<Grid item xs={6} sm={4}>
+			<Paper p={3}>
+				<Card>
+					<CardContent>
+						<img src={avatar} alt={lastName} />
+					</CardContent>
+
+					<CardContent>
+						{lastName} {firstName} {bio}
+					</CardContent>
+				</Card>
+			</Paper>
+		</Grid>
+	);
+};
 
 CompanyItem.propTypes = {};
 

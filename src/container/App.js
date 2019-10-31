@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index';
-import CompanyList from '../components/CompanyList';
+import Company from '../components/Company';
 
 const mapStateToProps = state => {
 	return {
@@ -17,4 +17,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(CompanyList);
+)(Company);

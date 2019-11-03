@@ -14,11 +14,14 @@ class CompanyInfo extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { term: '', value: 'lastName' };
+		this.inputRef = React.createRef();
 	}
 
-	// handleInputChange = e => {
-	// 	console.log(e);
-	// };
+	handleInputChange = e => {
+		this.setState({
+			term: e.target.value,
+		});
+	};
 
 	render() {
 		const { companies } = this.props;
@@ -34,6 +37,7 @@ class CompanyInfo extends Component {
 			},
 		];
 
+		// const Wrapper = styled.div``;
 		const Wrapper = styled.div`
 			.Company__bar {
 				margin-bottom: 30px;
@@ -56,7 +60,7 @@ class CompanyInfo extends Component {
 		console.log(this.state.term);
 		const { handleInputChange, term } = this.props;
 		return (
-			<Wrapper className="Company">
+			<div className="Company">
 				<div className="Company__bar">
 					<div className="Company__bar-heading">
 						<Typography variant="h4" component="h2" gutterBottom>
@@ -97,7 +101,7 @@ class CompanyInfo extends Component {
 						</div>
 					</div>
 				</div>
-			</Wrapper>
+			</div>
 		);
 	}
 }

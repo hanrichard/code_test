@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 
-const initialState = { companeis: [], selected: '' };
+const initialState = { companeis: [] };
 
 const companiesRudecer = (state = initialState, action) => {
 	switch (action.type) {
@@ -8,11 +8,6 @@ const companiesRudecer = (state = initialState, action) => {
 			return {
 				...state,
 				companeis: action.payload,
-			};
-		case actionTypes.SET_SECLECTED:
-			return {
-				...state,
-				selected: action.payload,
 			};
 		default:
 			return state;

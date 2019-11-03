@@ -8,37 +8,39 @@ import Typography from '@material-ui/core/Typography';
 import Companyheader from './CompanyHeader';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import Modal from '@material-ui/core/Modal';
-import { Paper } from '@material-ui/core';
-import CardContent from '@material-ui/core/CardContent';
-import Card from '@material-ui/core/Card';
 import styled from 'styled-components';
+
+import Modal from './Modal';
+import CompanyInfo from './CompanyInfo';
 
 class Company extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { term: '', value: 'lastname', open: false };
+		this.state = { open: false, term: '', company: null };
 	}
 
 	handleInputChange = e => {
+		console.log(e);
 		this.setState({
 			term: e.target.value,
 		});
 	};
 
 	handleChange = e => {
+		console.log(e);
 		this.setState({
 			value: e.target.value,
 		});
 	};
 
-	handleOpen = () => {
+	displayModal = company => {
 		this.setState({
+			company: company,
 			open: true,
 		});
 	};
 
-	handleClose = () => {
+	closeModal = () => {
 		this.setState({
 			open: false,
 		});
@@ -59,17 +61,6 @@ class Company extends Component {
 				return a[valuename] > b[valuename] ? 1 : b[valuename] > a[valuename] ? -1 : 0;
 			});
 
-		const sortOptions = [
-			{
-				value: 'lastname',
-				label: 'Last Name',
-			},
-			{
-				value: 'firstname',
-				label: 'First Name',
-			},
-		];
-
 		const Wrapper = styled.div`
 			.Company__bar {
 				margin-bottom: 30px;
@@ -89,6 +80,7 @@ class Company extends Component {
 			}
 		`;
 
+		console.log(this.state.term);
 		return companies.length === 0 ? (
 			<CircularProgress />
 		) : (
@@ -98,80 +90,26 @@ class Company extends Component {
 				</div>
 				<div className="Company__body">
 					<Container maxWidth="lg">
-						<div className="Company__bar">
-							<div className="Company__bar-heading">
-								<Typography variant="h4" component="h2" gutterBottom>
-									Our Employees
-								</Typography>
-							</div>
-							<div className="Company__bar-sortandsearch">
-								<div className="Company__bar-sort">
-									<TextField
-										id="outlined-select-currency"
-										select
-										label="Sort"
-										value={this.state.value}
-										onChange={e => this.handleChange(e)}
-										helperText="Sort by"
-										margin="normal"
-										variant="outlined"
-									>
-										{sortOptions.map(option => (
-											<MenuItem key={option.value} value={option.value}>
-												{option.label}
-											</MenuItem>
-										))}
-									</TextField>
-								</div>
-								<div className="Company__bar-search">
-									<form>
-										<TextField
-											id="outlined-search"
-											label="Search field"
-											type="search"
-											className=""
-											margin="normal"
-											variant="outlined"
-											value={this.state.term}
-											onChange={e => this.handleInputChange(e)}
-											helperText="Search field"
-										/>
-									</form>
-								</div>
-							</div>
-						</div>
+						<CompanyInfo term={this.state.term} handleInputChange={this.handleInputChange} />
+
 						<div>
 							<Grid container spacing={3}>
-								{companiesEmployees.map(company => {
-									return <CompanyItem company={company} key={company.id} />;
-								})}
+								{companies.employees &&
+									companies.employees.map(company => {
+										return (
+											<CompanyItem
+												company={company}
+												key={company.id}
+												display={this.displayModal}
+											/>
+										);
+									})}
 							</Grid>
 						</div>
 					</Container>
 				</div>
 
-				<button type="button" onClick={this.handleOpen}>
-					Open Modal
-				</button>
-
-				<Modal
-					aria-labelledby="simple-modal-title"
-					aria-describedby="simple-modal-description"
-					open={this.state.open}
-					onClose={this.handleClose}
-				>
-					<Container maxWidth="lg">
-						<Paper>
-							<Paper p={3}>
-								<Card>
-									<CardContent>img</CardContent>
-
-									<CardContent>info</CardContent>
-								</Card>
-							</Paper>
-						</Paper>
-					</Container>
-				</Modal>
+				<Modal company={this.state.company} onOpen={this.state.open} onClick={this.closeModal} />
 			</Wrapper>
 		);
 	}

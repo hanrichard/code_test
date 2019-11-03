@@ -14,15 +14,6 @@ export const setCompanies = payload => {
 	};
 };
 
-export const setSelected = id => {
-	return {
-		type: actionTypes.SET_SECLECTED,
-		payload: {
-			selected: id,
-		},
-	};
-};
-
 export const initCompanies = () => {
 	return dispatch => {
 		return axios

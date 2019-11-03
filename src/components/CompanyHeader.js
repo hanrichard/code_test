@@ -32,7 +32,7 @@ const CompanyItem = info => {
 				<div className="Company__header-info">
 					<div>
 						<Typography component="p" gutterBottom>
-							{info.info.companyMotto}{' '}
+							{info.info.companyMotto}
 						</Typography>
 					</div>
 					<div>

@@ -7,13 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
-// import Modal from './Modal';
-import { connect } from 'react-redux';
-import * as actions from '../store/actions/index';
 
 class CompanyItem extends Component {
 	render() {
-		const { avatar, lastName, firstName, jobTitle, id } = this.props.company;
+		const { company, display } = this.props;
+
+		const { avatar, lastName, firstName, jobTitle, bio } = company;
 
 		const Wrapper = styled.div`
 			.CompanyItem__Card {
@@ -31,7 +30,7 @@ class CompanyItem extends Component {
 
 		return (
 			<Grid item xs={12} sm={4}>
-				<Wrapper onClick={() => this.props.onSelected(id)}>
+				<Wrapper onClick={() => display(company)}>
 					<Paper p={3}>
 						<Card>
 							<CardContent className="CompanyItem__Card">
@@ -41,7 +40,7 @@ class CompanyItem extends Component {
 
 								<div className="CompanyItem__Card-info">
 									<Typography component="p" gutterBottom>
-										{lastName} {firstName}
+										{firstName} {lastName}
 									</Typography>
 									<Typography component="p" gutterBottom>
 										{jobTitle}
@@ -57,14 +56,4 @@ class CompanyItem extends Component {
 }
 
 CompanyItem.propTypes = {};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		onSelected: id => dispatch(actions.setSelected(id)),
-	};
-};
-
-export default connect(
-	null,
-	mapDispatchToProps
-)(CompanyItem);
+export default CompanyItem;

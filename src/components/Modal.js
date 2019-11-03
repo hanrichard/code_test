@@ -9,7 +9,7 @@ import Moment from 'react-moment';
 
 import styled from 'styled-components';
 
-class Company extends Component {
+class Modal extends Component {
 	render() {
 		const { company, onOpen, onClick } = this.props;
 
@@ -108,8 +108,8 @@ class Company extends Component {
 	}
 }
 
-Company.propTypes = {
+Modal.propTypes = {
 	onInitCompanies: PropTypes.func,
 };
 
-export default Company;
+export default Modal;

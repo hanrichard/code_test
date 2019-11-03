@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import styled from 'styled-components';
 
-import Modal from './Modal';
+// import Modal from './Modal';
 import CompanyInfo from './CompanyInfo';
 
 class Company extends Component {
@@ -109,7 +109,7 @@ class Company extends Component {
 					</Container>
 				</div>
 
-				<Modal company={this.state.company} onOpen={this.state.open} onClick={this.closeModal} />
+				{/* <Modal company={this.state.company} onOpen={this.state.open} onClick={this.closeModal} /> */}
 			</Wrapper>
 		);
 	}
